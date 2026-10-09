@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Levi B. Sendolo · Technical Assistant, Ministry of Mines and Energy</title>
+    <!-- Bootstrap 5 CDN + Bootstrap Icons + Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ---------- GLOBAL & VARIABLES ---------- */
+        :root {
+            --liberia-red: #BF0A30;      /* deep red */
+            --liberia-navy: #002868;     /* deep navy blue */
+            --gold-accent: #B38B4D;       /* subtle gold */
+            --white: #ffffff;
+            --off-white: #fafafa;
+            --gray-light: #f2f2f5;
+            --gray-border: #e6e9ef;
+            --text-dark: #1e1e2a;
+            --text-muted: #5e5e6e;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 16px 32px -8px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 24px 40px -12px rgba(0, 40, 104, 0.12), 0 8px 20px -8px rgba(0, 0, 0, 0.08);
+            --font-sans: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            --font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+        }
+
+        /* ---------- TYPOGRAPHY ---------- */
+        h1, h2, h3, h4, .display-5 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .text-navy { color: var(--liberia-navy); }
+        .text-red { color: var(--liberia-red); }
+        .text-gold { color: var(--gold-accent); }
+        .bg-navy { background-color: var(--liberia-navy); }
+        .bg-red { background-color: var(--liberia-red); }
+
+        /* ---------- LAYOUT & CONTAINERS ---------- */
+        .profile-container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* top bar */
+        .brand-bar {
+            background: var(--white);
+            border-bottom: 2px solid var(--liberia-red);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .brand-bar::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: var(--liberia-navy);
+        }
+        .brand-bar .ministry-label {
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--liberia-navy);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .brand-bar .ministry-label i {
+            font-size: 1.8rem;
+            color: var(--liberia-red);
+        }
+
+        /* profile card */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .avatar-wrapper {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: var(--gray-light);
+            border: 4px solid var(--white);
+            box-shadow: var(--shadow-md), 0 0 0 2px rgba(0, 40, 104, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: box-shadow 0.2s ease;
+        }
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .avatar-fallback {
+            font-size: 6rem;
+            color: var(--liberia-navy);
+            opacity: 0.6;
+            line-height: 1;
+        }
+
+        .profile-name {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+            line-height: 1.2;
+        }
+        .profile-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--liberia-navy);
+            margin-bottom: 0.4rem;
+        }
+        .profile-role {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--liberia-red);
+            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+        .profile-ministry {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+        .profile-location {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .profile-location i {
+            font-size: 1rem;
+            color: var(--liberia-red);
+        }
+
+        /* separator */
+        .divider-accent {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 1.5rem 0;
+        }
+        .divider-accent .line {
+            height: 2px;
+            width: 50px;
+            background: var(--gray-border);
+        }
+        .divider-accent .line.red {
+            background: var(--liberia-red);
+            width: 30px;
+        }
+        .divider-accent .line.navy {
+            background: var(--liberia-navy);
+            width: 30px;
+        }
+        .divider-accent .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold-accent);
+            border-radius: 50%;
+        }
+
+        /* description */
+        .profile-desc {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            color: #2e2e3e;
+            font-weight: 400;
+            border-left: 4px solid var(--liberia-red);
+            padding-left: 1.5rem;
+            text-align: left;
+            background: #fcfcfd;
+            padding: 1.25rem 1.75rem;
+            border-radius: 0 16px 16px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ---------- CONTACT CARDS ---------- */
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0 1.5rem;
+        }
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--white);
+            border: 1px solid var(--gray-border);
+            padding: 0.9rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 500;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+            box-shadow: var(--shadow-sm);
+            min-width: 160px;
+            font-size: 1rem;
+            border-left: 4px solid transparent;
+        }
+        .contact-btn i {
+            font-size: 1.4rem;
+            transition: transform 0.2s;
+        }
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--liberia-navy);
+            border-left-color: var(--liberia-red);
+            box-shadow: var(--shadow-hover);
+            background: #ffffff;
+            color: var(--liberia-navy);
+        }
+        .contact-btn:hover i {
+            transform: scale(1.05);
+            color: var(--liberia-red);
+        }
+        .contact-btn.whatsapp:hover i { color: #25D366; }
+        .contact-btn.facebook:hover i { color: #1877F2; }
+
+        /* ---------- QR SECTION ---------- */
+        .qr-section {
+            background: var(--off-white);
+            border-radius: 28px;
+            padding: 2.5rem 1.5rem;
+            margin: 3rem 0 2.5rem;
+            border: 1px solid var(--gray-border);
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.3s;
+        }
+        .qr-section h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--liberia-navy);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background: var(--white);
+            border: 2px solid var(--liberia-navy);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem auto 0.75rem;
+            box-shadow: 0 8px 0 rgba(0, 40, 104, 0.05);
+            color: var(--liberia-navy);
+            font-weight: 600;
+            font-size: 1.25rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .qr-placeholder::before,
+        .qr-placeholder::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--liberia-red);
+        }
+        .qr-placeholder::before {
+            top: 12px;
+            left: 12px;
+            border-right: none;
+            border-bottom: none;
+        }
+        .qr-placeholder::after {
+            bottom: 12px;
+            right: 12px;
+            border-left: none;
+            border-top: none;
+        }
+        .qr-image {
+            width: clamp(170px, 28vw, 220px);
+            height: auto;
+            display: block;
+            margin: 1.5rem auto 0.75rem;
+            border-radius: 18px;
+            border: 2px solid var(--liberia-navy);
+            background: var(--white);
+            padding: 0.75rem;
+            box-shadow: 0 12px 24px rgba(0, 40, 104, 0.08);
+        }
+        .qr-caption {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-weight: 400;
+        }
+
+        /* ---------- SAVE CONTACT BUTTON ---------- */
+        .btn-save-contact {
+            background: var(--liberia-navy);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 20px -8px rgba(0, 40, 104, 0.3);
+            transition: all 0.25s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .btn-save-contact i {
+            font-size: 1.4rem;
+        }
+        .btn-save-contact:hover {
+            background: #001a4a;
+            transform: translateY(-2px);
+            box-shadow: 0 18px 28px -8px rgba(0, 40, 104, 0.4);
+            color: white;
+        }
+        .btn-save-contact:focus-visible {
+            outline: 3px solid var(--gold-accent);
+            outline-offset: 3px;
+        }
+
+        /* footer */
+        .footer {
+            border-top: 1px solid var(--gray-border);
+            padding: 2rem 0 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+        .footer strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        .footer .ministry-name {
+            color: var(--liberia-navy);
+            font-weight: 600;
+        }
+
+        /* ---------- ANIMATIONS ---------- */
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(18px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            0% { opacity: 0; transform: scale(0.92); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-up {
+            animation: fadeUp 0.7s cubic-bezier(0.15, 0.85, 0.3, 1) forwards;
+        }
+        .animate-scale-in {
+            animation: scaleIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        .stagger-1 { animation-delay: 0.05s; }
+        .stagger-2 { animation-delay: 0.15s; }
+        .stagger-3 { animation-delay: 0.25s; }
+        .stagger-4 { animation-delay: 0.35s; }
+        .stagger-5 { animation-delay: 0.45s; }
+        .stagger-6 { animation-delay: 0.55s; }
+
+        .contact-btn, .qr-section, .btn-save-contact {
+            opacity: 0;
+            animation: fadeUp 0.6s cubic-bezier(0.15, 0.85, 0.3, 1) forwards;
+        }
+        .contact-btn:nth-child(1) { animation-delay: 0.1s; }
+        .contact-btn:nth-child(2) { animation-delay: 0.18s; }
+        .contact-btn:nth-child(3) { animation-delay: 0.26s; }
+        .contact-btn:nth-child(4) { animation-delay: 0.34s; }
+        .contact-btn:nth-child(5) { animation-delay: 0.42s; }
+
+        /* reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .contact-btn, .qr-section, .btn-save-contact,
+            .animate-fade-up, .animate-scale-in {
+                opacity: 1 !important;
+                animation: none !important;
+                transform: none !important;
+            }
+        }
+
+        /* responsive */
+        @media (max-width: 576px) {
+            .profile-name { font-size: 2rem; }
+            .profile-title { font-size: 1.1rem; }
+            .profile-role { font-size: 0.95rem; }
+            .avatar-wrapper { width: 140px; height: 140px; }
+            .avatar-fallback { font-size: 4.5rem; }
+            .contact-btn { padding: 0.75rem 1.25rem; min-width: 140px; font-size: 0.9rem; }
+            .contact-btn i { font-size: 1.2rem; }
+            .qr-placeholder { width: 160px; height: 160px; font-size: 1rem; }
+            .btn-save-contact { padding: 0.9rem 2rem; font-size: 1rem; }
+            .profile-desc { font-size: 1rem; padding: 1rem 1.25rem; }
+        }
+        @media (max-width: 400px) {
+            .contact-grid { gap: 0.75rem; }
+            .contact-btn { width: 100%; justify-content: center; }
+        }
+
+        /* focus visible */
+        a:focus-visible, button:focus-visible {
+            outline: 3px solid var(--gold-accent);
+            outline-offset: 2px;
+            border-radius: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BRAND BAR -->
+    <header class="brand-bar">
+        <div class="profile-container d-flex justify-content-center">
+            <div class="ministry-label">
+                <i class="bi bi-building"></i>
+                <span>MINISTRY OF MINES AND ENERGY</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="profile-container">
+        <!-- HERO / PROFILE -->
+        <section class="hero-section" aria-label="Executive profile">
+            <div class="avatar-wrapper animate-scale-in" id="avatarContainer">
+                <img id="profileImage" src="profile_pic.png" alt="Portrait of Levi B. Sendolo" >
+                <i class="bi bi-person avatar-fallback" id="fallbackIcon" aria-hidden="true"></i>
+            </div>
+
+            <h1 class="profile-name animate-fade-up stagger-1">LEVI B. SENDOLO</h1>
+            <p class="profile-title animate-fade-up stagger-2">Technical Assistant</p>
+            <p class="profile-role animate-fade-up stagger-3">Deputy Minister for Operations</p>
+            <p class="profile-ministry animate-fade-up stagger-4">MINISTRY OF MINES AND ENERGY</p>
+            <p class="profile-location animate-fade-up stagger-5">
+                <i class="bi bi-geo-alt-fill"></i> Capitol Hill, Monrovia, Liberia
+            </p>
+
+            <!-- decorative separator -->
+            <div class="divider-accent animate-fade-up stagger-6">
+                <span class="line red"></span>
+                <span class="dot"></span>
+                <span class="line navy"></span>
+            </div>
+        </section>
+
+        <!-- PROFESSIONAL DESCRIPTION -->
+        <div class="profile-desc animate-fade-up stagger-6" role="region" aria-label="Professional summary">
+            Technical Assistant supporting the Office of the Deputy Minister for Operations, Ministry of Mines and Energy, Republic of Liberia.
+        </div>
+
+        <!-- CONTACT BUTTONS -->
+        <div class="contact-grid" role="group" aria-label="Contact methods">
+            <!-- Call 1 -->
+            <a href="tel:0776553409" class="contact-btn" aria-label="Call 0776553409">
+                <i class="bi bi-telephone"></i> 0776553409
+            </a>
+            <!-- Call 2 -->
+            <a href="tel:+231886799931" class="contact-btn" aria-label="Call +231886799931">
+                <i class="bi bi-telephone"></i> +231886799931
+            </a>
+            <!-- WhatsApp (configurable) -->
+            <a href="#" id="whatsappLink" class="contact-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <i class="bi bi-whatsapp"></i> WhatsApp
+            </a>
+            <!-- Email (configurable) -->
+            <a href="#" id="emailLink" class="contact-btn" aria-label="Email">
+                <i class="bi bi-envelope"></i> Email
+            </a>
+            <!-- Facebook (configurable) -->
+            <a href="#" id="facebookLink" class="contact-btn facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <i class="bi bi-facebook"></i> Facebook
+            </a>
+        </div>
+
+        <!-- QR CODE SECTION -->
+        <section class="qr-section animate-fade-up" aria-label="QR code connect">
+            <center>
+                <h3>CONNECT WITH LEVI B. SENDOLO</h3>
+                <img src="qrcode.png" alt="QR code to connect with Levi B. Sendolo" class="qr-image">
+                <p class="qr-caption">Scan to connect</p>
+            </center>
+        </section>
+
+        <!-- SAVE CONTACT BUTTON -->
+        <div class="text-center mb-5">
+            <center>
+                <button id="saveContactBtn" class="btn-save-contact" aria-label="Save contact as vCard">
+                <i class="bi bi-download"></i> SAVE CONTACT
+            </button>
+            </center>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer" role="contentinfo">
+            <p class="mb-1"><strong>LEVI B. SENDOLO</strong></p>
+            <p class="mb-1">Technical Assistant • Deputy Minister for Operations</p>
+            <p class="mb-1"><span class="ministry-name">Ministry of Mines and Energy</span></p>
+            <p class="mb-1">Capitol Hill, Monrovia, Liberia</p>
+            <p class="mt-2 mb-0 text-muted" style="font-size: 0.85rem;">© 2026 Levi B. Sendolo</p>
+        </footer>
+    </main>
+
+    <!-- Bootstrap JS (optional, but included for completeness) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- EMBEDDED JAVASCRIPT -->
+    <script>
+        (function() {
+            "use strict";
+
+            // -------------------------------------------------------------
+            // CONFIGURATION – EDITABLE PERSONAL CONTACT INFORMATION
+            // -------------------------------------------------------------
+            const profile = {
+                email: ["levibsendolo934@gmail.com", "sendololevi@gmail.com"],
+                facebook: "https://web.facebook.com/levi.b.sendolo#",
+                whatsapp: "+231886799931",
+                profileImage: "profile_pic.png"
+            };
+
+            // -------------------------------------------------------------
+            // 1. PROFILE IMAGE WITH FALLBACK
+            // -------------------------------------------------------------
+            const profileImg = document.getElementById('profileImage');
+            const fallbackIcon = document.getElementById('fallbackIcon');
+
+            // If profileImage URL is provided and not the placeholder, try loading it
+            if (profile.profileImage && profile.profileImage !== "YOUR_PROFILE_IMAGE_URL") {
+                profileImg.src = profile.profileImage;
+                profileImg.classList.remove('d-none');   // show image
+                fallbackIcon.classList.add('d-none');    // hide fallback initially
+
+                profileImg.onerror = function() {
+                    // image failed to load: show fallback, hide image
+                    profileImg.classList.add('d-none');
+                    fallbackIcon.classList.remove('d-none');
+                };
+            } else {
+                // no image URL provided -> keep image hidden, show fallback
+                profileImg.classList.add('d-none');
+                fallbackIcon.classList.remove('d-none');
+            }
+
+            // -------------------------------------------------------------
+            // 2. APPLY CONFIGURABLE LINKS (whatsapp, email, facebook)
+            // -------------------------------------------------------------
+            const whatsappLink = document.getElementById('whatsappLink');
+            const emailLink = document.getElementById('emailLink');
+            const facebookLink = document.getElementById('facebookLink');
+
+            // WhatsApp – only apply if a real number is provided
+            if (profile.whatsapp && profile.whatsapp !== "YOUR_WHATSAPP_NUMBER") {
+                // strip non-digits for the wa.me link
+                const cleanNumber = profile.whatsapp.replace(/\D/g, '');
+                whatsappLink.href = `https://wa.me/${cleanNumber}`;
+            } else {
+                // placeholder: no link action, but keep button visible
+                whatsappLink.href = "#";
+                whatsappLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert("WhatsApp number will be configured soon.");
+                });
+            }
+
+            // Email
+            if (profile.email.length > 0) {
+                emailLink.href = `mailto:${profile.email.join(',')}`;
+            } else {
+                emailLink.href = "#";
+                emailLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert("Email address will be configured soon.");
+                });
+            }
+
+            // Facebook
+            if (profile.facebook && profile.facebook !== "YOUR_FACEBOOK_URL") {
+                facebookLink.href = profile.facebook;
+            } else {
+                facebookLink.href = "#";
+                facebookLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert("Facebook profile will be configured soon.");
+                });
+            }
+
+            // -------------------------------------------------------------
+            // 3. VCF / SAVE CONTACT
+            // -------------------------------------------------------------
+            function generateVCard() {
+                const name = "Levi B. Sendolo";
+                const firstName = "Levi";
+                const lastName = "Sendolo";
+                const title = "Technical Assistant";
+                const role = "Deputy Minister for Operations";
+                const org = "Ministry of Mines and Energy";
+                const address = "Capitol Hill, Monrovia, Liberia";
+                const phone1 = "0776553409";
+                const phone2 = "+231886799931";
+
+                // Build vCard 3.0
+                const vcard = [
+                    "BEGIN:VCARD",
+                    "VERSION:3.0",
+                    `N:${lastName};${firstName};;;`,
+                    `FN:${name}`,
+                    `ORG:${org}`,
+                    `TITLE:${title}`,
+                    `ROLE:${role}`,
+                    `ADR;TYPE=WORK:;;${address};;;`,
+                    `TEL;TYPE=CELL,VOICE:${phone1}`,
+                    `TEL;TYPE=CELL,VOICE:${phone2}`,
+                    ...profile.email.map(email => `EMAIL;TYPE=WORK:${email}`),
+                    "END:VCARD"
+                ].join("\r\n");
+
+                return vcard;
+            }
+
+            document.getElementById('saveContactBtn').addEventListener('click', function() {
+                const vcardData = generateVCard();
+                const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'Levi_B_Sendolo.vcf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            });
+
+            // -------------------------------------------------------------
+            // 4. ACCESSIBILITY: Ensure external links have proper rel
+            // -------------------------------------------------------------
+            document.querySelectorAll('a[target="_blank"]').forEach(link => {
+                link.setAttribute('rel', 'noopener noreferrer');
+            });
+
+        })();
+    </script>
+</body>
+</html>
